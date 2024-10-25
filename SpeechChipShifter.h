@@ -8,11 +8,11 @@
 
 #include "Arduino.h"
 
-class SpeechChip
+class SpeechChipShifter
 {
   public:
 
-	SpeechChip(int ALD, int data, int clock, int latch);
+	SpeechChipShifter(int ALD, int data, int clock, int latch);
 
 	void NN1();
 	void OR();
