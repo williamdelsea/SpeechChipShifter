@@ -1,7 +1,6 @@
-#include "Arduino.h"
-#include "SpeechChipSihfter.h"
+#include "SpeechChipShifter.h"
 
-SpeechChipSihfter::SpeechChipSihfter(int ALD, int data, int clock, int latch)
+SpeechChipShifter::SpeechChipShifter(int ALD, int data, int clock, int latch)
 {
   pinMode(ALD, OUTPUT);
   pinMode(data, OUTPUT);
@@ -15,457 +14,463 @@ SpeechChipSihfter::SpeechChipSihfter(int ALD, int data, int clock, int latch)
   _latch = latch;
 }
 
-int SpeechChipSihfter::AddressLoad(int delayTime){
+int SpeechChipShifter::AddressLoad(int delayTime){
   digitalWrite(_ALD, LOW);
   delay(10);
   digitalWrite(_ALD, HIGH);
   delay(delayTime);
 }
 
-void SpeechChipSihfter::OR(){
+void SpeechChipShifter::ShiftAllophone(uint8_t bits) {
   digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00111010);
+  shiftOut(_data, _clock, LSBFIRST, bits);
   digitalWrite(_latch, HIGH);
+}
+
+void SpeechChipShifter::OR(){
+  
+  ShiftAllophone(B00111010);
+  
   AddressLoad(330);
 }
 
-void SpeechChipSihfter::HH2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00111001);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::HH2(){
+  
+  ShiftAllophone(B00111001);
+  
   AddressLoad(180);
 }
 
-void SpeechChipSihfter::HH1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00011011);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::HH1(){
+  
+  ShiftAllophone(B00011011);
+  
   AddressLoad(130);
 }
 
-void SpeechChipSihfter::EH(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00000111);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::EH(){
+  
+  ShiftAllophone(B00000111);
+  
   AddressLoad(70);
 }
 
-void SpeechChipSihfter::EL(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00111111);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::EL(){
+  
+  ShiftAllophone(B00111111);
+  
   AddressLoad(190);
 }
 
-void SpeechChipSihfter::LL(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00101101);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::LL(){
+  
+  ShiftAllophone(B00101101);
+  
   AddressLoad(110);
 }
 
-void SpeechChipSihfter::OW(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00110101);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::OW(){
+  
+  ShiftAllophone(B00110101);
+  
   AddressLoad(240);
 }
 
-void SpeechChipSihfter::PA5(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00000100);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::PA5(){
+  
+  ShiftAllophone(B00000100);
+  
   AddressLoad(200);
 }
 
-void SpeechChipSihfter::BB1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00011100);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::BB1(){
+  
+  ShiftAllophone(B00011100);
+  
   AddressLoad(80); 
 }
 
-void SpeechChipSihfter::AX(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00001111);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::AX(){
+  
+  ShiftAllophone(B00001111);
+  
   AddressLoad(70);
 }
 
-void SpeechChipSihfter::IY(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00010011);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::IY(){
+  
+  ShiftAllophone(B00010011);
+  
   AddressLoad(250);
 }
 
-void SpeechChipSihfter::NN2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00111000);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::NN2(){
+  
+  ShiftAllophone(B00111000);
+  
   AddressLoad(190);
 }
 
-void SpeechChipSihfter::ER1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00110011);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::ER1(){
+  
+  ShiftAllophone(B00110011);
+  
   AddressLoad(160);
 }
 
-void SpeechChipSihfter::AE(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00011010);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::AE(){
+  
+  ShiftAllophone(B00011010);
+  
   AddressLoad(120);
 }
 
-void SpeechChipSihfter::AA(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00011000);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::AA(){
+  
+  ShiftAllophone(B00011000);
+  
   AddressLoad(100);
 }
 
-void SpeechChipSihfter::AY(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00000110);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::AY(){
+  
+  ShiftAllophone(B00000110);
+  
   AddressLoad(260);
 }
 
-void SpeechChipSihfter::KK1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00101010);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::KK1(){
+  
+  ShiftAllophone(B00101010);
+  
   AddressLoad(160);
 }
 
-void SpeechChipSihfter::AO(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00010111);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::AO(){
+  
+  ShiftAllophone(B00010111);
+  
   AddressLoad(100);
 }
 
-void SpeechChipSihfter::S(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00110111);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::S(){
+  
+  ShiftAllophone(B00110111);
+  
   AddressLoad(90);
 }
 
-void SpeechChipSihfter::EY(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00010100);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::EY(){
+  
+  ShiftAllophone(B00010100);
+  
   AddressLoad(280);
 }
 
-void SpeechChipSihfter::PA4(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00000011);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::PA4(){
+  
+  ShiftAllophone(B00000011);
+  
   AddressLoad(100);
 }
 
-void SpeechChipSihfter::PA3(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00000010);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::PA3(){
+  
+  ShiftAllophone(B00000010);
+  
   AddressLoad(50);
 }
 
-void SpeechChipSihfter::PA2(){
-  digitalWrite(_latch, LOW);
+void SpeechChipShifter::PA2(){
+  
   shiftOut(_data, _clock, LSBFIRST,B00000001);
-  digitalWrite(_latch, HIGH);
+  
   AddressLoad(30);
 }
 
-void SpeechChipSihfter::PA1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, 00000000);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::PA1(){
+  
+  ShiftAllophone(00000000);
+  
   AddressLoad(10);
 }
 
-void SpeechChipSihfter::PP(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00001001);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::PP(){
+  
+  ShiftAllophone(B00001001);
+  
   AddressLoad(210);
 }
 
-void SpeechChipSihfter::D1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00010101);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::D1(){
+  
+  ShiftAllophone(B00010101);
+  
   AddressLoad(70);
 }
 
-void SpeechChipSihfter::D2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00100001);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::D2(){
+  
+  ShiftAllophone(B00100001);
+  
   AddressLoad(160);
 }
 
-void SpeechChipSihfter::TT2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00001101);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::TT2(){
+  
+  ShiftAllophone(B00001101);
+  
   AddressLoad(140);
 }
 
-void SpeechChipSihfter::UW1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00010110);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::UW1(){
+  
+  ShiftAllophone(B00010110);
+  
   AddressLoad(100);
 }
 
-void SpeechChipSihfter::MM(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00010000);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::MM(){
+  
+  ShiftAllophone(B00010000);
+  
   AddressLoad(180);
 }
 
-void SpeechChipSihfter::YY2(){
-  digitalWrite(_latch, LOW);
+void SpeechChipShifter::YY2(){
+  
   shiftOut(_data, _clock, LSBFIRST,B00011001);
-  digitalWrite(_latch, HIGH);
+  
   AddressLoad(180);
 }
 
-void SpeechChipSihfter::IH(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00001100);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::IH(){
+  
+  ShiftAllophone(B00001100);
+  
   AddressLoad(70);
 }
 
-void SpeechChipSihfter::TT1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00010001);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::TT1(){
+  
+  ShiftAllophone(B00010001);
+  
   AddressLoad(100);
 }
 
-void SpeechChipSihfter::ZZ(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00101011);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::ZZ(){
+  
+  ShiftAllophone(B00101011);
+  
   AddressLoad(210);
 }
 
-void SpeechChipSihfter::NG(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00101100);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::NG(){
+  
+  ShiftAllophone(B00101100);
+  
   AddressLoad(220);
 }
 
-void SpeechChipSihfter::GG1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00100100);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::GG1(){
+  
+  ShiftAllophone(B00100100);
+  
   AddressLoad(80);
 }
 
-void SpeechChipSihfter::GG2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00111101);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::GG2(){
+  
+  ShiftAllophone(B00111101);
+  
   AddressLoad(40);
 }
 
-void SpeechChipSihfter::GG3(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00100010);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::GG3(){
+  
+  ShiftAllophone(B00100010);
+  
   AddressLoad(140);
 }
 
-void SpeechChipSihfter::FF(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00101000);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::FF(){
+  
+  ShiftAllophone(B00101000);
+  
   AddressLoad(150);
 }
 
-void SpeechChipSihfter::KK2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00101001);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::KK2(){
+  
+  ShiftAllophone(B00101001);
+  
   AddressLoad(190);
 }
 
-void SpeechChipSihfter::KK3(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00001000);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::KK3(){
+  
+  ShiftAllophone(B00001000);
+  
   AddressLoad(120);
 }
 
-void SpeechChipSihfter::CH(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00110010); 
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::CH(){
+  
+  ShiftAllophone(B00110010); 
+  
   AddressLoad(190);
 }
 
-void SpeechChipSihfter::TH(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00011101);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::TH(){
+  
+  ShiftAllophone(B00011101);
+  
   AddressLoad(180);
 }
 
-void SpeechChipSihfter::ZH(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00100110);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::ZH(){
+  
+  ShiftAllophone(B00100110);
+  
   AddressLoad(190);
 }
 
-void SpeechChipSihfter::RR1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00001110);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::RR1(){
+  
+  ShiftAllophone(B00001110);
+  
   AddressLoad(170);
 }
 
-void SpeechChipSihfter::RR2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00100111);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::RR2(){
+  
+  ShiftAllophone(B00100111);
+  
   AddressLoad(120);
 }
 
-void SpeechChipSihfter::OY(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00000101);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::OY(){
+  
+  ShiftAllophone(B00000101);
+  
   AddressLoad(420);
 }
 
-void SpeechChipSihfter::JH(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00001010);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::JH(){
+  
+  ShiftAllophone(B00001010);
+  
   AddressLoad(140);
 }
 
-void SpeechChipSihfter::DH1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00010010);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::DH1(){
+  
+  ShiftAllophone(B00010010);
+  
   AddressLoad(290);
 }
 
-void SpeechChipSihfter::DH2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00110110);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::DH2(){
+  
+  ShiftAllophone(B00110110);
+  
   AddressLoad(240);
 }
 
-void SpeechChipSihfter::UW2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00011111);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::UW2(){
+  
+  ShiftAllophone(B00011111);
+  
   AddressLoad(290);
 }
 
-void SpeechChipSihfter::YY1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00110001);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::YY1(){
+  
+  ShiftAllophone(B00110001);
+  
   AddressLoad(130);
 }
 
-void SpeechChipSihfter::BB2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00111111);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::BB2(){
+  
+  ShiftAllophone(B00111111);
+  
   AddressLoad(50);
 }
 
-void SpeechChipSihfter::UH(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00011110);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::UH(){
+  
+  ShiftAllophone(B00011110);
+  
   AddressLoad(100);
 }
 
-void SpeechChipSihfter::AW(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00100000);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::AW(){
+  
+  ShiftAllophone(B00100000);
+  
   AddressLoad(370);
 }
 
-void SpeechChipSihfter::VV(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00100011);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::VV(){
+  
+  ShiftAllophone(B00100011);
+  
   AddressLoad(190);
 }
 
-void SpeechChipSihfter::SH(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00100101);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::SH(){
+  
+  ShiftAllophone(B00100101);
+  
   AddressLoad(160);
 }
 
-void SpeechChipSihfter::WW(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00101110);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::WW(){
+  
+  ShiftAllophone(B00101110);
+  
   AddressLoad(180);
 }
 
-void SpeechChipSihfter::XR(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00101111);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::XR(){
+  
+  ShiftAllophone(B00101111);
+  
   AddressLoad(360);
 }
 
-void SpeechChipSihfter::WH(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00110000);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::WH(){
+  
+  ShiftAllophone(B00110000);
+  
   AddressLoad(200);
 }
 
-void SpeechChipSihfter::ER2(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00110100);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::ER2(){
+  
+  ShiftAllophone(B00110100);
+  
   AddressLoad(300);
 }
 
-void SpeechChipSihfter::AR(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00111011);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::AR(){
+  
+  ShiftAllophone(B00111011);
+  
   AddressLoad(290);
 }
 
-void SpeechChipSihfter::YR(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00111100);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::YR(){
+  
+  ShiftAllophone(B00111100);
+  
   AddressLoad(350);
 }
 
-void SpeechChipSihfter::NN1(){
-  digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, B00001011);
-  digitalWrite(_latch, HIGH);
+void SpeechChipShifter::NN1(){
+  
+  ShiftAllophone(B00001011);
+  
   AddressLoad(140);
 }
