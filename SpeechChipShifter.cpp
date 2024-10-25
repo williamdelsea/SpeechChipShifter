@@ -183,7 +183,7 @@ void SpeechChipShifter::PA3(){
 
 void SpeechChipShifter::PA2(){
   
-  shiftOut(_data, _clock, LSBFIRST,B00000001);
+  ShiftAllophone(B00000001);
   
   AddressLoad(30);
 }
@@ -239,7 +239,7 @@ void SpeechChipShifter::MM(){
 
 void SpeechChipShifter::YY2(){
   
-  shiftOut(_data, _clock, LSBFIRST,B00011001);
+  hiftAllophone(B00011001);
   
   AddressLoad(180);
 }
