@@ -7,7 +7,7 @@ SpeechChipShifter::SpeechChipShifter(int ALD, int data, int clock, int latch)
   pinMode(clock, OUTPUT);
   pinMode(latch, OUTPUT);
   digitalWrite(ALD, HIGH);
-  DDRD = B11111111;
+  //DDRD = B11111111;
   _ALD = ALD;
   _data = data;
   _clock = clock;
@@ -23,8 +23,9 @@ int SpeechChipShifter::AddressLoad(int delayTime){
 
 void SpeechChipShifter::ShiftAllophone(uint8_t bits) {
   digitalWrite(_latch, LOW);
-  shiftOut(_data, _clock, LSBFIRST, bits);
+  shiftOut(_data, _clock, MSBFIRST, bits);
   digitalWrite(_latch, HIGH);
+  delay(10);
 }
 
 void SpeechChipShifter::OR(){
@@ -239,7 +240,7 @@ void SpeechChipShifter::MM(){
 
 void SpeechChipShifter::YY2(){
   
-  hiftAllophone(B00011001);
+  ShiftAllophone(B00011001);
   
   AddressLoad(180);
 }
