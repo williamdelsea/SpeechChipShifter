@@ -83,7 +83,6 @@ class SpeechChipShifter
 
     void AddressLoad(unsigned long delayTime);
 	void LoadAllophone(uint8_t bits);
-	void ShiftData(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
     int _ALD;
     int _data;
     int _clock;
